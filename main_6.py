@@ -55,10 +55,8 @@ def parse_measurements_chunk(
             mm.seek(rem)
 
             while line := mm.readline():
-                # idx = line.find(b";")
-                # measurements[line[:idx]].update(float(line[idx + 1:]))
-                station_name, measurement = line.split(b";", maxsplit=1)
-                measurements[station_name].update(float(measurement))
+                idx = line.find(b";")
+                measurements[line[:idx]].update(float(line[idx + 1:]))
 
     return measurements
 
